@@ -40,7 +40,7 @@ const ProgressTrack = styled.div<{ height: string }>`
   box-shadow: inset 0 0.1rem 0.1rem rgba(0, 0, 0, 0.1);
 `;
 
-const ProgressFill = styled.div<{ value: number; max: number; color: string; animated: boolean }>`
+const ProgressFill = styled.div<{ value: number; max: number; color: string; $animated: boolean }>`
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -53,8 +53,8 @@ const ProgressFill = styled.div<{ value: number; max: number; color: string; ani
   transition: width ${({ theme }) => theme.transition.speed} ease;
   border-radius: ${({ theme }) => theme.borderRadius.pill};
   
-  ${({ animated }) =>
-    animated &&
+  ${({ $animated }) =>
+    $animated &&
     `
     position: relative;
     overflow: hidden;
@@ -174,7 +174,7 @@ export const ProgressBar: React.FC<ProgressBarProps> = ({
     <ProgressBarContainer>
       {label && <ProgressLabel>{label}</ProgressLabel>}
       <ProgressTrack height={height}>
-        <ProgressFill value={clampedValue} max={max} color={color} animated={animated} />
+        <ProgressFill value={clampedValue} max={max} color={color} $animated={animated} />
       </ProgressTrack>
     </ProgressBarContainer>
   );

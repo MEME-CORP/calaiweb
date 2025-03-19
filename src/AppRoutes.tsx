@@ -6,14 +6,7 @@ import RegistrationScreen from './features/auth/RegistrationScreen';
 import OnboardingFlow from './features/profile/OnboardingFlow';
 import { useAuthStore } from './store/authStore';
 import { useOnboardingStore } from './store/onboardingStore';
-
-// Placeholder Dashboard component
-const Dashboard = () => (
-  <div style={{ padding: '2rem', textAlign: 'center' }}>
-    <h1>Dashboard</h1>
-    <p>Welcome to your nutrition dashboard! This will be implemented in the next sub-batch.</p>
-  </div>
-);
+import DashboardScreen from './features/dashboard/DashboardScreen';
 
 const AppRoutes: React.FC = () => {
   const isAuthenticated = useAuthStore((state) => state.isAuthenticated);
@@ -42,7 +35,7 @@ const AppRoutes: React.FC = () => {
             isOnboardingCompleted ? <Navigate to="/dashboard" /> : <OnboardingFlow />
           } 
         />
-        <Route path="/dashboard" element={<Dashboard />} />
+        <Route path="/dashboard" element={<DashboardScreen />} />
       </Route>
       
       {/* Default redirect */}

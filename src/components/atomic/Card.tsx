@@ -11,7 +11,7 @@ interface CardProps {
   hoverable?: boolean;
 }
 
-const CardContainer = styled.div<{ variant: CardVariant; hoverable: boolean }>`
+const CardContainer = styled.div<{ $variant: CardVariant; $hoverable: boolean }>`
   position: relative;
   display: flex;
   flex-direction: column;
@@ -27,27 +27,27 @@ const CardContainer = styled.div<{ variant: CardVariant; hoverable: boolean }>`
   overflow: hidden;
   
   /* Variant styles */
-  ${({ variant, theme }) =>
-    variant === 'primary' &&
+  ${({ $variant, theme }) =>
+    $variant === 'primary' &&
     css`
       border-top: 4px solid ${theme.colors.primary};
     `}
   
-  ${({ variant, theme }) =>
-    variant === 'secondary' &&
+  ${({ $variant, theme }) =>
+    $variant === 'secondary' &&
     css`
       border-top: 4px solid ${theme.colors.secondary1};
     `}
   
-  ${({ variant, theme }) =>
-    variant === 'accent' &&
+  ${({ $variant, theme }) =>
+    $variant === 'accent' &&
     css`
       border-top: 4px solid ${theme.colors.accent};
     `}
   
   /* Hoverable effect */
-  ${({ hoverable, theme }) =>
-    hoverable &&
+  ${({ $hoverable, theme }) =>
+    $hoverable &&
     css`
       cursor: pointer;
       &:hover {
@@ -85,10 +85,10 @@ export const Card: React.FC<CardProps> = ({
 }) => {
   return (
     <CardContainer 
-      variant={variant} 
+      $variant={variant} 
       className={className} 
       onClick={onClick}
-      hoverable={hoverable || !!onClick}
+      $hoverable={hoverable || !!onClick}
     >
       {children}
     </CardContainer>

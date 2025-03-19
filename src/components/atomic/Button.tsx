@@ -14,9 +14,10 @@ interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
 }
 
 const ButtonContainer = styled.button<{
-  variant: ButtonVariant;
-  size: ButtonSize;
-  fullWidth: boolean;
+  $variant: ButtonVariant;
+  $size: ButtonSize;
+  $fullWidth: boolean;
+  $isLoading?: boolean;
 }>`
   display: inline-flex;
   align-items: center;
@@ -31,33 +32,33 @@ const ButtonContainer = styled.button<{
   cursor: pointer;
   transition: all ${({ theme }) => theme.transition.speed} ease-in-out;
   box-shadow: ${({ theme }) => theme.shadows.sm};
-  width: ${({ fullWidth }) => (fullWidth ? '100%' : 'auto')};
+  width: ${({ $fullWidth }) => ($fullWidth ? '100%' : 'auto')};
   
   /* Size variants */
-  ${({ size, theme }) =>
-    size === 'sm' &&
+  ${({ $size, theme }) =>
+    $size === 'sm' &&
     css`
       font-size: 0.875rem;
       padding: 0.5rem 0.75rem;
     `}
   
-  ${({ size, theme }) =>
-    size === 'md' &&
+  ${({ $size, theme }) =>
+    $size === 'md' &&
     css`
       font-size: 1rem;
       padding: 0.75rem 1.25rem;
     `}
   
-  ${({ size, theme }) =>
-    size === 'lg' &&
+  ${({ $size, theme }) =>
+    $size === 'lg' &&
     css`
       font-size: 1.125rem;
       padding: 0.875rem 1.5rem;
     `}
   
   /* Color variants */
-  ${({ variant, theme }) =>
-    variant === 'primary' &&
+  ${({ $variant, theme }) =>
+    $variant === 'primary' &&
     css`
       background-color: ${theme.colors.primary};
       color: ${theme.colors.text};
@@ -68,8 +69,8 @@ const ButtonContainer = styled.button<{
       }
     `}
   
-  ${({ variant, theme }) =>
-    variant === 'secondary' &&
+  ${({ $variant, theme }) =>
+    $variant === 'secondary' &&
     css`
       background-color: ${theme.colors.secondary1};
       color: white;
@@ -80,8 +81,8 @@ const ButtonContainer = styled.button<{
       }
     `}
   
-  ${({ variant, theme }) =>
-    variant === 'accent' &&
+  ${({ $variant, theme }) =>
+    $variant === 'accent' &&
     css`
       background-color: ${theme.colors.accent};
       color: white;
@@ -92,8 +93,8 @@ const ButtonContainer = styled.button<{
       }
     `}
   
-  ${({ variant, theme }) =>
-    variant === 'outline' &&
+  ${({ $variant, theme }) =>
+    $variant === 'outline' &&
     css`
       background-color: transparent;
       border: 2px solid ${theme.colors.accent};
@@ -120,7 +121,7 @@ const ButtonContainer = styled.button<{
     display: flex;
     align-items: center;
     justify-content: center;
-    opacity: ${({ isLoading }) => (isLoading ? 0 : 1)};
+    opacity: ${({ $isLoading }) => ($isLoading ? 0 : 1)};
   }
   
   .spinner {
@@ -172,10 +173,10 @@ export const Button: React.FC<ButtonProps> = ({
 }) => {
   return (
     <ButtonContainer 
-      variant={variant} 
-      size={size} 
-      fullWidth={fullWidth} 
-      isLoading={isLoading}
+      $variant={variant} 
+      $size={size} 
+      $fullWidth={fullWidth} 
+      $isLoading={isLoading}
       disabled={isLoading || props.disabled}
       {...props}
     >

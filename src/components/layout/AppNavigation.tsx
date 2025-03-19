@@ -26,14 +26,14 @@ const NavContainer = styled.nav`
   z-index: 1000;
 `;
 
-const NavItemLink = styled(Link)<{ active: boolean }>`
+const NavItemLink = styled(Link)<{ $active: boolean }>`
   flex: 1;
   display: flex;
   flex-direction: column;
   align-items: center;
   padding: ${({ theme }) => theme.spacing.sm} 0;
   text-decoration: none;
-  color: ${({ active, theme }) => (active ? theme.colors.accent : theme.colors.textLighter)};
+  color: ${({ $active, theme }) => ($active ? theme.colors.accent : theme.colors.textLighter)};
   
   &:hover {
     text-decoration: none;
@@ -58,7 +58,11 @@ export const AppNavigation: React.FC<AppNavigationProps> = ({ items }) => {
         const isActive = location.pathname === item.path;
         
         return (
-          <NavItemLink key={index} to={item.path} active={isActive}>
+          <NavItemLink 
+            key={index} 
+            to={item.path} 
+            $active={isActive}
+          >
             <NavIcon>{item.icon}</NavIcon>
             <NavText>{item.label}</NavText>
           </NavItemLink>
